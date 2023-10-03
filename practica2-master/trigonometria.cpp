@@ -10,7 +10,7 @@ int main(){
     double secs;
     cout << "Escriba el valor de un angulo (grados, minutos y segundos): ";
     cin >> grados >> setw(4) >> mins >> setw(3) >> secs;
-    double grados_dec = grados + ((mins + (secs / 60)) /60);
+    double grados_dec = grados + ((mins + (secs / 60.0)) /60.0);
     double rads = grados_dec * M_PI / 180;
     cout << "Valor del angulo en radianes: " << setprecision(4) << rads << " radianes." << endl;
     cout << "sen " << rads << " = " << setprecision(4) << fixed << sin(rads) << endl;
