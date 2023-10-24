@@ -1,7 +1,7 @@
 ﻿/******************************************************************************\
  * Curso de Programación 1. Práctica 3
  * Autores originales: Miguel Ángel Latre y Javier Martínez
- * Modificado por: ¡PON AQUÍ TU NOMBRE! (código de las funciones establecidas en
+ * Modificado por: Juan Ondiviela Pamplona (código de las funciones establecidas en
  *                 la práctica 3)
  * Última revisión: 8 de octubre de 2021
  * Resumen: Fichero de implementación de un módulo «fechas» que ofrece
@@ -84,7 +84,8 @@ unsigned diasDelMes(unsigned mes, unsigned agno) {
         }else{
             return 28;
         }
-    }else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+    }
+    else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
         return 30;
     }else{
         return 31;
@@ -99,12 +100,14 @@ unsigned diasDelMes(unsigned mes, unsigned agno) {
  *                    diasDelAgno(2020) devuelve 366.
  */
 unsigned diasDelAgno(unsigned agno) {
-    if(agno < 1582){
-        if(esBisiesto){
+    if(agno > 1582){
+        if(esBisiesto(agno)){
             return 366;
         }else{
             return 365;
         }
+    }else{
+        return 365;
     }
 }
 
@@ -121,7 +124,7 @@ unsigned diasDelAgno(unsigned agno) {
  */
 unsigned diaEnElAgno(unsigned dia, unsigned mes, unsigned agno) {
     unsigned cuentaDias = 0;
-    for(int i = 1; i < mes; i++){
+    for(unsigned i = 1; i < mes; i++){
         cuentaDias = cuentaDias + diasDelMes(i, agno);
     }
     cuentaDias = cuentaDias + dia;
@@ -169,10 +172,10 @@ void diaSiguiente(unsigned& dia, unsigned& mes, unsigned& agno) {
  */
 unsigned diaDeLaSemana(unsigned dia, unsigned mes, unsigned agno) {
     unsigned cuentaDias = 0;
-    for(int agno_escogido = AGNO_INICIAL; agno_escogido < agno; agno_escogido++){
+    for(unsigned agno_escogido = AGNO_INICIAL; agno_escogido < agno; agno_escogido++){
         cuentaDias = cuentaDias + diasDelAgno(agno_escogido);
     }
     cuentaDias = cuentaDias + diaEnElAgno(dia, mes, agno);
-    int dia_semana = (cuentaDias - 1) % 7;
+    unsigned dia_semana = (cuentaDias - 1) % 7;
     return dia_semana;
 }

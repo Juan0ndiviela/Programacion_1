@@ -27,9 +27,9 @@ using namespace std;
 
 
 void pedirDatos(unsigned& mes, unsigned&agno){
-    cout << "Introduzca el mes [1-12]: ";
-    cin >> mes;
-    while(mes < 1 || mes > 13){
+    cout << "Introduzca el mes [1-12]: ";//Pide un mes al usuario, del 1 al 12(1=Enero,12=Diciembre)
+    cin >> mes;//Se introduce el mes
+    while(mes < 1 || mes > 12){//Si el mes es menor que 1 o ma
         cout << "El mes debe estar comprendido entre 1 y 12: ";
         cin >> mes;
     }
@@ -58,11 +58,11 @@ void escribirCabecera(unsigned mes, unsigned agno){
 void escribirCalendario(unsigned& mes, unsigned& agno){
     escribirCabecera(mes, agno);
     unsigned primerDia = diaDeLaSemana(1, mes, agno);
-    for(int i = 0; i < primerDia; i++){
+    for(unsigned i = 0; i < primerDia; i++){
         cout << "    ";
     }
-    unsigned current_dia = 1;
-    for(current_dia = 1; current_dia < diasDelMes(mes, agno); current_dia++){
+    for(unsigned current_dia = 1; current_dia <= diasDelMes(mes, agno); current_dia++){
+        cout << setw(4) << current_dia;
         if((primerDia + current_dia) % 7 == 0){
             cout << endl;
         }
